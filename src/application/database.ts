@@ -1,6 +1,7 @@
 import { prismaClient } from '@prisma/client';
+import logger from 'winston';
 
-export const prismaClient = new PrismaClient({
+export const prismaClient = new prismaClient({
     log: [
         {
             emit: "event",
@@ -33,7 +34,7 @@ prismaClient.on('info', (e) => {
     logger.info(e);
 })
 
-prismaClient.on('query', (err) => {
+prismaClient.on('query', (e) => {
     logger.info(e);
 })
 
